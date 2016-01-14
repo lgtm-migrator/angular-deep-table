@@ -8,6 +8,7 @@ A Deep Table Level as tree, for AngularJS
 	```sh
 	bower i --save angular-deep-table
 	```
+
 # Getting started 
 
 1. Include `src/deepTable.css` and `src/directive.js` in your HTML file. 
