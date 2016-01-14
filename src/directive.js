@@ -31,7 +31,8 @@
           ' </table>\n' +
           '</div>\n' +
           '')
-      }])
+      }
+    ])
 
   angular
     .module('deepTable', [
@@ -65,7 +66,8 @@
             })
           }
         }
-      }])
+      }
+    ])
 
     .directive('deepTable', [
       '$timeout',
@@ -253,10 +255,14 @@
 
               switch (col.sortingType) {
                 case 'number':
-                  key = function (x) { return parseFloat(x[col.field]); }
+                  key = function (x) {
+                    return parseFloat(x[col.field])
+                  }
                   break
                 case 'date':
-                  key = function (x) { return new Date(x[col.field]); }
+                  key = function (x) {
+                    return new Date(x[col.field])
+                  }
                   break
               }
 
@@ -267,7 +273,7 @@
 
             var resetSorting = function (sortedCol) {
               var arraySize = scope.colDefinitions.length
-              for (var i = 0;i < arraySize;i++) {
+              for (var i = 0; i < arraySize; i++) {
                 var col = scope.colDefinitions[i]
                 if (col.field != sortedCol.field) {
                   col.sorted = false
@@ -722,7 +728,7 @@
         }
         // then check each of the other columns
         var arraySize = colDefinitions.length
-        for (var i = 0;i < arraySize;i++) {
+        for (var i = 0; i < arraySize; i++) {
           var col = colDefinitions[i]
           if (col.filterable) {
             filterApplied = true
@@ -740,13 +746,11 @@
 
       function checkItem (item, filterString, col) {
         if (col.sortingType === 'number') {
-          if (item.branch[col.field] != null
-            && parseFloat(item.branch[col.field]) === parseFloat(filterString)) {
+          if (item.branch[col.field] != null && parseFloat(item.branch[col.field]) === parseFloat(filterString)) {
             return true
           }
         } else {
-          if (item.branch[col.field] != null
-            && item.branch[col.field].toLowerCase().indexOf(filterString.toLowerCase()) !== -1) {
+          if (item.branch[col.field] != null && item.branch[col.field].toLowerCase().indexOf(filterString.toLowerCase()) !== -1) {
             return true
           }
         }
