@@ -1,10 +1,10 @@
 ;(function () {
   angular
-    .module('template/tableDeep/tableDeep.html', [])
+    .module('template/deepTable/deepTable.html', [])
     .run([
       '$templateCache',
       function ($templateCache) {
-        $templateCache.put('template/tableDeep/tableDeep.html',
+        $templateCache.put('template/deepTable/deepTable.html',
           '<div class="table-responsive">\n' +
           ' <table class="table tree-grid">\n' +
           '   <thead>\n' +
@@ -34,8 +34,8 @@
       }])
 
   angular
-    .module('tableDeep', [
-      'template/tableDeep/tableDeep.html'
+    .module('deepTable', [
+      'template/deepTable/deepTable.html'
     ])
 
     .directive('compile', [
@@ -67,15 +67,15 @@
         }
       }])
 
-    .directive('tableDeep', [
+    .directive('deepTable', [
       '$timeout',
-      'tableDeepTemplate',
+      'deepTableTemplate',
       function ($timeout,
-        tableDeepTemplate) {
+        deepTableTemplate) {
         return {
           restrict: 'E',
           templateUrl: function (tElement, tAttrs) {
-            return tAttrs.templateUrl || tableDeepTemplate.getPath()
+            return tAttrs.templateUrl || deepTableTemplate.getPath()
           },
           replace: true,
           scope: {
@@ -658,8 +658,8 @@
       }
     ])
 
-    .provider('tableDeepTemplate', function () {
-      var templatePath = 'template/tableDeep/tableDeep.html'
+    .provider('deepTableTemplate', function () {
+      var templatePath = 'template/deepTable/deepTable.html'
 
       this.setPath = function (path) {
         templatePath = path

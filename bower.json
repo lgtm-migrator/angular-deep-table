@@ -1,5 +1,5 @@
 {
-  "name": "table-deep-angular-directive",
+  "name": "angular-deep-table",
   "version": "0.1.0",
   "description": "A Deep Table Level as tree, for AngularJS",
   "main": [
