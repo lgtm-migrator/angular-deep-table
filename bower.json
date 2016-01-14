@@ -1,0 +1,42 @@
+{
+  "name": "table-deep-angular-directive",
+  "version": "0.1.0",
+  "description": "A Deep Table Level as tree, for AngularJS",
+  "main": [
+    "src/tableDeep.css",
+    "src/directive.js"
+  ],
+  "licence": "MIT",
+  "keywords": [
+    "bootstrap",
+    "angular",
+    "table",
+    "deep"
+  ],
+  "authors": [
+    "Van-Duyet Le"
+  ],
+  "homepage": "https://github.com/duyetdev/table-deep-angular-directive",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/duyetdev/table-deep-angular-directive"
+  },
+  "ignore": [
+    "temp",
+    "test",
+    ".gitignore",
+    "bower.json",
+    "package.json",
+    "README.md",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.1.16",
+    "bootstrap": ">=2.3"
+  },
+  "moduleType": [],
+  "license": "MIT"
+}
