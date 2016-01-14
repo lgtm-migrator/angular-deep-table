@@ -107,10 +107,6 @@
             attrs.expandLevel = attrs.expandLevel ? attrs.expandLevel : '3'
             expand_level = parseInt(attrs.expandLevel, 10)
 
-            scope.$watch('treeData', function (val) {
-              // Works here
-            })
-
             if (!scope.treeData) {
               alert('No data was defined for the tree, please define treeData!')
               return
