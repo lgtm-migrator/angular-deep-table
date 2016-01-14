@@ -6,7 +6,7 @@
       function ($templateCache) {
         $templateCache.put('template/deepTable/deepTable.html',
           '<div class="table-responsive">\n' +
-          ' <table class="table tree-grid">\n' +
+          ' <table class="{{tableClass}} tree-grid">\n' +
           '   <thead>\n' +
           '     <tr>\n' +
           '       <th><a ng-if="expandingProperty.sortable" ng-click="sortBy(expandingProperty)">{{expandingProperty.displayName || expandingProperty.field || expandingProperty}}</a><span ng-if="!expandingProperty.sortable">{{expandingProperty.displayName || expandingProperty.field || expandingProperty}}</span><i ng-if="expandingProperty.sorted" class="{{expandingProperty.sortingIcon}} pull-right"></i></th>\n' +
@@ -14,7 +14,8 @@
           '     </tr>\n' +
           '   </thead>\n' +
           '   <tbody>\n' +
-          '     <tr ng-repeat="row in tree_rows | searchFor:$parent.filterString:expandingProperty:colDefinitions track by row.branch.uid"\n' +
+          '     <tr ng-repeat="row in tree_rows"\n' +
+          // '     <tr ng-repeat="row in tree_rows | searchFor:$parent.filterString:expandingProperty:colDefinitions track by row.branch.uid"\n' +
           '       ng-class="\'level-\' + {{ row.level }} + (row.branch.selected ? \' active\':\'\')" class="tree-grid-row">\n' +
           '       <td><a ng-click="user_clicks_branch(row.branch)"><i ng-class="row.tree_icon"\n' +
           '              ng-click="row.branch.expanded = !row.branch.expanded"\n' +
@@ -72,10 +73,9 @@
     .directive('deepTable', [
       '$timeout',
       'deepTableTemplate',
-      function ($timeout,
-        deepTableTemplate) {
+      function ($timeout, deepTableTemplate) {
         return {
-          restrict: 'E',
+          restrict: 'AE',
           templateUrl: function (tElement, tAttrs) {
             return tAttrs.templateUrl || deepTableTemplate.getPath()
           },
@@ -83,6 +83,7 @@
           scope: {
             treeData: '=',
             colDefs: '=',
+            tableClass: '=',
             expandOn: '=',
             onSelect: '&',
             onClick: '&',
@@ -98,18 +99,24 @@
               return void 0
             }
 
-            attrs.iconExpand = attrs.iconExpand ? attrs.iconExpand : 'icon-plus  glyphicon glyphicon-plus  fa fa-plus'
-            attrs.iconCollapse = attrs.iconCollapse ? attrs.iconCollapse : 'icon-minus glyphicon glyphicon-minus fa fa-minus'
-            attrs.iconLeaf = attrs.iconLeaf ? attrs.iconLeaf : 'icon-file  glyphicon glyphicon-file  fa fa-file'
-            attrs.sortedAsc = attrs.sortedAsc ? attrs.sortedAsc : 'icon-file  glyphicon glyphicon-chevron-up  fa angle-up'
-            attrs.sortedDesc = attrs.sortedDesc ? attrs.sortedDesc : 'icon-file  glyphicon glyphicon-chevron-down  fa angle-down'
+            attrs.iconExpand = attrs.iconExpand ? attrs.iconExpand : 'icon-plus  glyphicon glyphicon-plus  fa fa-plus uk-icon-plus'
+            attrs.iconCollapse = attrs.iconCollapse ? attrs.iconCollapse : 'icon-minus glyphicon glyphicon-minus fa fa-minus uk-icon-minus'
+            attrs.iconLeaf = attrs.iconLeaf ? attrs.iconLeaf : 'icon-file  glyphicon glyphicon-file  fa fa-file uk-icon-file'
+            attrs.sortedAsc = attrs.sortedAsc ? attrs.sortedAsc : 'icon-file  glyphicon glyphicon-chevron-up  fa angle-up uk-icon-chevron-up'
+            attrs.sortedDesc = attrs.sortedDesc ? attrs.sortedDesc : 'icon-file  glyphicon glyphicon-chevron-down  fa angle-down uk-icon-chevron-down'
             attrs.expandLevel = attrs.expandLevel ? attrs.expandLevel : '3'
             expand_level = parseInt(attrs.expandLevel, 10)
+
+            scope.$watch('treeData', function (val) {
+              // Works here
+            })
 
             if (!scope.treeData) {
               alert('No data was defined for the tree, please define treeData!')
               return
             }
+
+            scope.tableClass = scope.tableClass || 'table'
 
             var getExpandingProperty = function getExpandingProperty () {
               if (attrs.expandOn) {
