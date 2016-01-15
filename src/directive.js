@@ -83,7 +83,7 @@
           scope: {
             treeData: '=',
             colDefs: '=',
-            tableClass: '=',
+            tableClass: '@',
             expandOn: '=',
             onSelect: '&',
             onClick: '&',
