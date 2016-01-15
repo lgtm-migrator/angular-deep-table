@@ -22,3 +22,12 @@ A Deep Table Level as tree, for AngularJS
 	```html
 	<deep-table tree-data="tree_data"></deep-table>
 	```
+
+# Custom 
+
+### 1 - UIkit, bootstrap support
+```html
+<deep-table table-class="uk-table"></deep-table>
+```
+
+By default table have `.table` class of bootstrap.
