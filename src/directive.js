@@ -114,76 +114,6 @@
               return
             }
 
-            var resetTreeDataLevel = function resetTreeDataLevel(data) {
-              // Make sure all have level data
-              var haveLevel = true;
-              for (var i in data) {
-                if (!data[i].hasOwnProperty('level')) haveLevel = false;
-              }
-              if (!haveLevel) return;
-
-              var level_max = data[0].level || 0;
-              var level_min = data[0].level || 0;
-              var level_size = 0;
-
-              for (var i in data) {
-                if (data[i].level > level_max) level_max = data[i].level;
-                if (data[i].level < level_min) level_min = data[i].level;
-              }
-
-              level_size = level_max - level_min;
-              var delta = level_min;
-
-              console.info("::: ", level_min, level_max, level_size);
-
-              if (delta == 0) return;
-              
-              var ii = []
-              var iii = []
-              for (var i in data) {
-                ii.push(data[i].level)
-                data[i].level -= delta;
-                iii.push(data[i].level)
-              }
-
-              // TODO: Reset level 
-              // 
-              // console.info("Old: ==> ", ii);
-              // console.info("New: ==> ", iii);
-              // console.info("level_size: ==> ", level_size);
-
-              // function getChildLevel(level) {
-              //   var result = [];
-
-              //   for (var i in data) {
-              //     if (data[i].level == level) {
-              //       var new_node = data[i]; // buildNode(data[i], level)
-              //       if (new_node) result.push(new_node)
-              //     }
-              //   }
-
-              //   return result;
-              // }
-              // function buildNode(node, level) {
-              //   if (!node) return false;
-              //   node.children = getChildLevel(level + 1)
-              //   return node
-              // }
-
-              // var new_data = [];
-              // for (var i in data) {
-
-              //   if (data[i].level == 0) {
-              //     var _new_node = buildNode(data[i], 0);
-              //     if (_new_node) new_data.push(new_data);  
-              //   }
-                
-              // }
-
-              // console.log(new_data);
-            }
-
-            resetTreeDataLevel(scope.treeData)
             
             var getExpandingProperty = function getExpandingProperty () {
               if (attrs.expandOn) {
@@ -388,7 +318,6 @@
 
             on_treeData_change = function () {
               console.warn("On change ...");
-              resetTreeDataLevel(scope.treeData)
               getExpandingProperty()
 
               var add_branch_to_list, root_branch, _i, _len, _ref, _results
