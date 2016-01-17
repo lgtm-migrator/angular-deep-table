@@ -104,3 +104,7 @@ table.tree-grid {
 	max-height : 500px;
 	overflow-y : scroll;
 }
+
+tr.tree-grid-row.active {
+    background: #F3F3F3;
+}
