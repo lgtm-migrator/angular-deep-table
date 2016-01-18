@@ -1,6 +1,6 @@
 {
   "name": "angular-deep-table",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "A Deep Table Level as tree, for AngularJS",
   "main": [
     "src/tableDeep.css",
